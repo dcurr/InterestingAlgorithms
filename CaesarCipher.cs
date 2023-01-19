@@ -42,16 +42,19 @@ namespace InterestingAlgorithms
 
         private char GetShiftedValue(int shift, char inputValue)
         {
-            var alphabet = baseAlphabet;
+            StringBuilder alphabet = new StringBuilder();
+            alphabet.Append(baseAlphabet);
+
             int indexOfCharInAlphabet = baseAlphabet.IndexOf(inputValue);
             int offset = indexOfCharInAlphabet + shift;
+            var absoluteOffset = Math.Abs(offset);
 
-            if (Math.Abs(offset) > alphabet.Length)
+            if (absoluteOffset > alphabet.Length)
             {
-                var x = Math.Abs(offset) / alphabet.Length;
-                for(int i = 0; i < x; i++)
+                var x = absoluteOffset / alphabet.Length;
+                for (int i = 0; i < x; i++)
                 {
-                    alphabet += alphabet;
+                    alphabet.Append(baseAlphabet);
                 }
             }
 
@@ -61,8 +64,8 @@ namespace InterestingAlgorithms
             }
             else
             {
-                var reversedAlphabet = new string(alphabet.Reverse().ToArray());
-                return reversedAlphabet[Math.Abs(offset) - 1];
+                var reversedAlphabet = new string(alphabet.ToString().Reverse().ToArray());
+                return reversedAlphabet[absoluteOffset - 1];
             }
         }
     }
