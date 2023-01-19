@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace InterestingAlgorithms
 {
@@ -11,25 +7,25 @@ namespace InterestingAlgorithms
         const string baseAlphabet = "abcdefghijklmnopqrstuvwxyz";
 
         /// <summary>
-        /// 
+        /// Encrypt a string using the caesar cypher
         /// </summary>
         /// <param name="shift">minus values indicate a left shift, positive a right shift</param>
-        /// <param name="plaintextMsg">message to be encoded</param>
+        /// <param name="plaintextMsg">message to be encrypted</param>
         /// <returns></returns>
         public string Encrypt(int shift, string plaintextMsg)
         {
             string encryptedMsg = "";
-            foreach(char c in plaintextMsg.ToLower())
+            foreach (char c in plaintextMsg.ToLower())
             {
                 int indexOfCharInAlphabet = baseAlphabet.IndexOf(c);
                 if (indexOfCharInAlphabet < 0)
-                { 
-                    encryptedMsg += c; 
+                {
+                    encryptedMsg += c;
                 }
                 else
                 {
                     encryptedMsg += GetShiftedValue(shift, c);
-                }         
+                }
             }
 
             return encryptedMsg;
